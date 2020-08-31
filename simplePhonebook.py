@@ -1,10 +1,11 @@
-import os;
 import shelve;
+import re;
 
 def printEntry(name,entry):
     print(name);
     print(entry[0]);
     print(entry[1]);
+    print('\n')
 
 def runBook():
     print("Welcome to Dennis' simple phonebook")
@@ -21,14 +22,15 @@ def runBook():
         choice = input();
         #PRINTING
         if ((choice == "P") or (choice == "p")):
-            print("Printing all entries...")
+            print("Printing all entries...\n")
             for v in data:
-                print(v);
+                printEntry(v,data[v]);
             print("Printing done.")
         #QUITTING
         elif ((choice == "Q") or (choice == "q")):
             print("Quitting");
             break;
+        #DELETING
         elif ((choice == "D") or (choice == "d")):
             print("Who's information would you like to delete?");
             name = input();
@@ -47,6 +49,7 @@ def runBook():
                     print("Stopping Deletion.");
                 else:
                     print("Not a valid choice; stopping deletion.");
+        #SEARCHING
         elif ((choice == "S") or (choice == "s")):
             print("Who's information would you like to retrieve?");
             info = input();
@@ -55,12 +58,29 @@ def runBook():
                 print("Entry Not Found.");
             else:
                 printEntry(info,tInfo);
+        #ADDING
         elif ((choice == "A") or (choice == "a")):
             print("What is the name of the person you want to add?");
+            #Some places let you name your kid with any character on a keyboard - go with that
             name = input();
             print("What is their phone number?");
+            print("Formatting: (123)456-7890 ");
             #match against a regex
             #^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$
+            pRegex = re.compile("^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$")
+            pNum = "";
+            while (True):
+                pNum = input();
+                if (pRegex.match(pNum)):
+                    break;
+                else:
+                    print("Sorry, that didn't work. Please retype the number.");
+                    print("Formatting: (123)456-7890 ");
+            print("Any notes you would like to write about this person?");
+            Notes = input();
+            data[name] = (pNum,Notes);
+            print("Here is your entry.")
+            printEntry(name,data[name]);
     data.close();
 
 
