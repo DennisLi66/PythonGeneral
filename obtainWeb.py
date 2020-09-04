@@ -22,23 +22,34 @@ def extractPage(webpage,words):
     file.close()
     return path;
 
+def convertToPlainText(path):
+    return;
+
 def interface():
-    print("Welcome to the Web Retrieval and Action area.");
+    print("Welcome to the Wikipedia downloader.");
     print(os.path.join(os.getcwd(),'data','WebPages'))
     mostRecentPath = "";
     while (True):
         print("What would you like to do?");
-        print("[W]ikipedia/[w]ikipedia - download a wikipedia article.")
-        print("[D]ownload/[d]ownload a webpage")
+        print("[D]ownload/[d]ownload a wikipedia article.")
         print("[E]dit/[e]dit a webpage")
         print("[R]emove/[r]emove a webpage")
         print("[Q]uit/[q]uit");
         choice = input();
-        if ((choice == 'W') or (choice == 'w')):
+        if ((choice == 'D') or (choice == 'd')):
             print("Which Wikipedia article would you like to extract?");
             pageToDL = input();
             url = constructURLfromWord(pageToDL);
             mostRecentPath = extractPage(url,pageToDL);
-        
+        else if ((choice == 'R') or (choice == 'r')):
+            print("Which Wikipedia article would you like to remove from your downloads?");
+            kill = input();
+            kill = '_'.join(words.split());
+            path = os.path.join(os.getcwd(),'data','WebPages','Raw',kill + '.txt');
+            if (os.path.exists(path)):
+                os.unlink(path)
+                print(path + " was removed.")
+            else:
+                print(path + " did not exist.");
     
 interface();
