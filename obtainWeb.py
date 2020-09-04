@@ -28,13 +28,14 @@ def interface():
     mostRecentPath = "";
     while (True):
         print("What would you like to do?");
+        print("[W]ikipedia/[w]ikipedia - download a wikipedia article.")
         print("[D]ownload/[d]ownload a webpage")
         print("[E]dit/[e]dit a webpage")
         print("[R]emove/[r]emove a webpage")
         print("[Q]uit/[q]uit");
         choice = input();
-        if ((choice == 'D') or (choice == 'd')):
-            print("Which page would you like to extract?");
+        if ((choice == 'W') or (choice == 'w')):
+            print("Which Wikipedia article would you like to extract?");
             pageToDL = input();
             url = constructURLfromWord(pageToDL);
             mostRecentPath = extractPage(url,pageToDL);
