@@ -51,5 +51,6 @@ def interface():
                 print(path + " was removed.")
             else:
                 print(path + " did not exist.");
-    
+        else if ((choice == "Q") or ()):
+            break;
 interface();
