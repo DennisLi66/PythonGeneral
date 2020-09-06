@@ -1,5 +1,6 @@
-#install requests
+#install requests,beautifulsoup4
 import requests
+import bs4
 import os
 
 
@@ -32,7 +33,7 @@ def interface():
     while (True):
         print("What would you like to do?");
         print("[D]ownload/[d]ownload a wikipedia article.")
-        print("[E]dit/[e]dit a webpage")
+        print("[E]xamine/[e]xamine a webpage")
         print("[R]emove/[r]emove a webpage")
         print("[Q]uit/[q]uit");
         choice = input();
@@ -41,7 +42,7 @@ def interface():
             pageToDL = input();
             url = constructURLfromWord(pageToDL);
             mostRecentPath = extractPage(url,pageToDL);
-        else if ((choice == 'R') or (choice == 'r')):
+        elif ((choice == 'R') or (choice == 'r')):
             print("Which Wikipedia article would you like to remove from your downloads?");
             kill = input();
             kill = '_'.join(words.split());
@@ -51,6 +52,13 @@ def interface():
                 print(path + " was removed.")
             else:
                 print(path + " did not exist.");
-        else if ((choice == "Q") or ()):
+        elif ((choice == "Q") or (choice == 'q')):
             break;
+        elif ((choice == "E") or (choice == 'e')):
+            print("What further command would you like to do?")
+            print("[C]onvert/[c]onvert your HTML to text.")
+            print("[S]earch/[s]earch for something in your downloaded page.")
+            print("[O]pen/[o]pen downloaded document into browser.")
+            print("[R]eturn/[r]eturn")
+            deepChoice = input();
 interface();
