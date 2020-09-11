@@ -8,6 +8,7 @@
 
 def ezURL(product):
     url = "";
+    combo = '+'.join(words.split());
     return url;
 
 def interface():
