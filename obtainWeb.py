@@ -3,6 +3,7 @@ import requests
 import bs4
 import os
 
+# Convert to non-Wikipedia - use similar to feeling lucky
 
 def constructURLfromWord(words):
     print("Generating Wikipedia URL...");
@@ -27,18 +28,18 @@ def convertToPlainText(path):
     return;
 
 def interface():
-    print("Welcome to the Wikipedia downloader.");
+    print("Welcome to the Website downloader.");
     print(os.path.join(os.getcwd(),'data','WebPages'))
     mostRecentPath = "";
     while (True):
         print("What would you like to do?");
-        print("[D]ownload/[d]ownload a wikipedia article.")
+        print("[D]ownload/[d]ownload a webpage.")
         print("[E]xamine/[e]xamine a webpage")
         print("[R]emove/[r]emove a webpage")
         print("[Q]uit/[q]uit");
         choice = input();
         if ((choice == 'D') or (choice == 'd')):
-            print("Which Wikipedia article would you like to extract?");
+            print("What would you like to search for?");
             pageToDL = input();
             url = constructURLfromWord(pageToDL);
             mostRecentPath = extractPage(url,pageToDL);
