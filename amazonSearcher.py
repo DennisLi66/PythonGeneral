@@ -12,8 +12,9 @@ def ezSearchURL(product):
     return url + combo;
 
 def ezSearchBookURL(info):
-    url = "";
-    return url;
+    url = "https://www.amazon.com/";
+    combo = "s?k=" + '+'.join(info.split()) + "&i=stripbooks"
+    return url + combo;
 
 def interface():
     print("Welcome to the Amazon Interaction Interface.")
